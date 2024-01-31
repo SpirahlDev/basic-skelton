@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteBase /react/
+
+# API requests
+RewriteRule ^api/(.*)$ routes/api.php?controller=$1 [QSA,END]
+
+# Public directory
+RewriteRule ^((assets|css|scripts)/.*)$ public/$1 [END]
+# react public
+RewriteRule ^((view)/.*)$ ressources/$1 [END]
+
+# Non-API requests
+RewriteRule (.*) routes/web.php?uri=$1 [QSA,END]
