@@ -1,2 +1,2 @@
 # architecture-php-react
-A little app architecture based on vanilla php and react
+A little app architecture with vanilla php and react
