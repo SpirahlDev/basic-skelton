@@ -1,8 +1,9 @@
 <?php
 namespace App\Controllers;
+use App\Controllers\Api\ApiBaseController;
 
 
-class ClientController extends Controller{
+class ClientController extends ApiBaseController{
 
 
     public function __construct(){

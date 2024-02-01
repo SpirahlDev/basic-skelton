@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /react/
+RewriteBase /architecture-php-react/
 
 # API requests
 RewriteRule ^api/(.*)$ routes/api.php?controller=$1 [QSA,END]

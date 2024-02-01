@@ -10,7 +10,7 @@ $request_segments=explode("/",$url);
 $controller=ucfirst(array_shift($request_segments));
 
 
-$className="App\Controllers\\".$controller."Controller";
+$className="App\Controllers\Web\\".$controller."Controller";
 
 if(!class_exists($className)){
     echo "404 error";

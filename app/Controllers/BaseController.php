@@ -1,9 +1,10 @@
 <?php
 namespace App\Controllers;
 require_once(dirname(__DIR__).'/../vendor/autoload.php');
+
 use Firebase\JWT\JWT;
 
-abstract class Controller{
+abstract class BaseController{
     protected string $index;
     protected array|null $request_body;
 
@@ -14,7 +15,7 @@ abstract class Controller{
         // TODO initialiser aussi les autre paramètre basic, comme les headers
     }
 
-    public function handle($pathes){
+    public function handle(array $pathes){
 
         if(!empty($pathes) && is_array($pathes)){
             $method=array_shift($pathes);
@@ -37,7 +38,7 @@ abstract class Controller{
         $this->request_pathes = $pathes;
     }
 
-    public static function getJsonBody():array|null{
+    protected static function getJsonBody():array|null{
         $json_data = file_get_contents('php://input');
         $data=json_decode($json_data,true);
 
@@ -46,35 +47,8 @@ abstract class Controller{
 
     public function index(){}
 
-    public function generateView(string $view_name,string $page_title){
-        $page=dirname(__DIR__).'/../ressources/view/index.php';
-        
-        if(file_exists($page)){
-            ob_start();
-                $page_title=(empty($page_title)) ?'': $page_title;
-                $_token=$this->pageToken($view_name);
 
-                include_once($page);
-            $view=ob_get_clean();
-
-            echo $view;
-        }else{
-            throw new \Exception("La vue ".$view_name." est introuvable");
-        }
-    }
-
-    protected function pageToken($view_name):string{
-
-        $token_data=[
-            "role"=>"aync-page-data",
-            "main-component"=>$view_name
-        ];
-
-        $secretKey=$this->getSecretKey();
-
-        $token = JWT::encode($token_data, $secretKey, 'HS256');
-        return $token;
-    }
+    
 
     public function getSecretKey():string{
         $keysFile=require_once(dirname(__DIR__).'/../config/secretKey.php');

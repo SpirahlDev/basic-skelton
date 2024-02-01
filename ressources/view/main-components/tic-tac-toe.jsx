@@ -1,9 +1,8 @@
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-    <>
-        <Navbar/>
-        <Como/>
-        <Footer/>
-    </>
-)
+  <>
+    <Navbar/>
+    <Game />
+  </>
+); 
