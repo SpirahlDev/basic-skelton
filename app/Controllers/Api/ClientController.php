@@ -30,6 +30,6 @@ class ClientController extends ApiBaseController{
         }
 
 
-        echo "cette route ne supporte pas la methode ".$method;
+        echo "cette route ne supporte $.... ".$method;
     }
 }
