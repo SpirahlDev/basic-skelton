@@ -2,7 +2,8 @@
 
 function default_loader($class){
     $class=str_replace("\\","/" , $class);
-    $class=str_replace("App","app" , $class);
+
+    $class=preg_replace("/^App/","app" , $class);
 
     $file=dirname(__DIR__)."/".$class.".php";
     

@@ -1,7 +1,10 @@
 <?php
+use App\Core\Application;
+use App\Controllers\ExempleController;
+
 require_once(dirname(__DIR__)."/config/autoload.php");
 
-$url=$_REQUEST["controller"];
+$url=$_REQUEST["route"];
 
 if(empty($url)){
     header("HTTP/1.0 404 Not Found");
@@ -9,26 +12,16 @@ if(empty($url)){
     exit;
 }
 
-$request_segments=explode("/",$url);
-
-$controller=ucfirst(array_shift($request_segments));
-
-
-$className="App\Controllers\Api\\".$controller."Controller";
-
-if(!class_exists($className)){
-    echo "route inconnu";
-    exit;
-}
-
-
-$clientInfo=new $className();
-$clientInfo->handle($request_segments);
 
 
 
+$app=new Application($url);
 
 
+$app->post('task',ExempleController::class);
+$app->get('task',ExempleController::class);
+
+$app->watch();
 
 
 

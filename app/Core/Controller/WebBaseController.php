@@ -3,10 +3,10 @@ namespace App\Controllers\Web;
 require_once(dirname(__DIR__).'/../../vendor/autoload.php');
 
 use Firebase\JWT\JWT;
-use App\Controllers\BaseController;
+use App\Core\Controller\Controller;
 
 
-abstract class WebBaseController extends BaseController{
+abstract class WebBaseController extends Controller{
     protected const VIEW_NAME="";
     protected const TITLE="";
 
@@ -50,15 +50,9 @@ abstract class WebBaseController extends BaseController{
 
     protected abstract function getComponentsList():array;
 
-    public function handle(array $pathes){
+    public function handle(string $url){
         
-        if(method_exists($this, "index")){
-            $this->index();
-        }else{
-            echo "action introuvable";
-        }
-
-        $this->request_pathes = $pathes;
+        
     }
     
 }

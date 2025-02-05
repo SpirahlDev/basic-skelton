@@ -1,8 +1,8 @@
 RewriteEngine On
-RewriteBase /architecture-php-react/
+RewriteBase /basic-skelton/
 
 # API requests
-RewriteRule ^api/(.*)$ routes/api.php?controller=$1 [QSA,END]
+RewriteRule ^api/(.*)$ routes/api.php?route=$1 [QSA,END]
 
 # Public directory
 RewriteRule ^((assets|css|scripts)/.*)$ public/$1 [END]
